@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+input[type="text"]{
+  padding: 20px;
+  width: 50%;
+}
+
+input[type="text"]::placeholder{
+  color: #000;
+  letter-spacing: 1px;
+  font-family: Consolas;
+}
+
+.empleados{
+  border: 1px solid green;
+}
