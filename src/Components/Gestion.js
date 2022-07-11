@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { Empleados } from './Empleados'
 
 export const Gestion = () => {
@@ -15,9 +15,10 @@ export const Gestion = () => {
         setNombre(e.target.value)
     }
 
-    const mostrarMensaje = ()=>{
-      console.log("Soy un mensaje desde el componente de empleados")
-    }
+    const mostrarMensaje = useCallback(() => {
+        console.log("Hola soy un mensaje desde el componente de empleados")
+      },[])
+    
 
   return (
     <div>
