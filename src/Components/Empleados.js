@@ -6,7 +6,8 @@ export const Empleados = React.memo(({page = 1, mensaje}) => {
     
     useEffect(()=>{
         conseguirEmpleados(page)
-    }, [page])
+        mensaje()
+    }, [page, mensaje])
 
     useEffect(()=>{
     }, [dataEmpleado])
@@ -22,7 +23,6 @@ export const Empleados = React.memo(({page = 1, mensaje}) => {
             console.error(error)
         }
     }
-    mensaje()
 
   return (
     <div>
