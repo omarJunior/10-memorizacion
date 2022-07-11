@@ -7,14 +7,17 @@ export const Gestion = () => {
     const [pagina, setPagina] = useState(1)
     const gestorInput = useRef("")
 
+    useEffect(()=>{
+    }, [nombre, pagina])
+
     const asignarGestor = (e)=>{
         //setNombre(gestorInput.current.value)
         setNombre(e.target.value)
     }
 
-    useEffect(()=>{
-      console.log("Vista gestion actualizada")
-    }, [nombre, pagina])
+    const mostrarMensaje = ()=>{
+      console.log("Soy un mensaje desde el componente de empleados")
+    }
 
   return (
     <div>
@@ -31,7 +34,7 @@ export const Gestion = () => {
         <p>Los usuarios son gestionados por: {nombre}</p>
         <button disabled={(pagina === 1) ? true : false} onClick={()=> setPagina(1)}>Pagina 1</button>
         <button disabled={(pagina === 2) ? true : false} onClick={()=> setPagina(2)}>Pagina 2</button>
-        <Empleados page={pagina}/>
+        <Empleados page={pagina} mensaje={mostrarMensaje}/>
     </div>
   )
 }

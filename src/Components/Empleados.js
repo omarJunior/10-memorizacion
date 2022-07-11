@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-export const Empleados = React.memo(({page = 1}) => {
+export const Empleados = React.memo(({page = 1, mensaje}) => {
 
     const [dataEmpleado, setDataEmpleado] = useState([])
     
@@ -9,7 +9,6 @@ export const Empleados = React.memo(({page = 1}) => {
     }, [page])
 
     useEffect(()=>{
-        console.log("Se ha vuelto a renderizar los empleados")
     }, [dataEmpleado])
 
     const conseguirEmpleados = async(page)=>{
@@ -17,13 +16,13 @@ export const Empleados = React.memo(({page = 1}) => {
             const url = "https://reqres.in/api/users?page="+page
             const peticion = await fetch(url)
             const {data: empleados} = await peticion.json()
-            console.log("Se ejecuto la peticion ajax")
             setDataEmpleado(empleados)
 
         } catch (error) {
             console.error(error)
         }
     }
+    mensaje()
 
   return (
     <div>

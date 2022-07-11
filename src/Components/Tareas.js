@@ -30,7 +30,6 @@ export const Tareas = () => {
         for(let i = 0; i <= acc; i++){
             console.log("Ejecutando acumulacion de contadores del pasado...!")
         }
-
         return `Contador manual de tareas: ${acc}`
     }
 
