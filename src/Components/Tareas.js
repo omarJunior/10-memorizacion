@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 
 export const Tareas = () => {
 
     const [tareas, setTareas] = useState([])
+    const [contador, setContador] = useState(0)
 
     const guardarTareas = (e)=>{
         e.preventDefault()
@@ -20,6 +21,22 @@ export const Tareas = () => {
         setTareas(filtro)
     }
 
+    const sumarContador = ()=>{
+        setContador(contador + 1)
+    }
+
+    const contadorPasados = (acc)=>{
+        console.log("acc:", acc)
+        for(let i = 0; i <= acc; i++){
+            console.log("Ejecutando acumulacion de contadores del pasado...!")
+        }
+
+        return `Contador manual de tareas: ${acc}`
+    }
+
+    //memorizar acciones para no volverlas a repetir, solo se ejecutara cuando deba
+    const memoContadores = useMemo(() => contadorPasados(contador), [contador])
+
   return (
     <div className='tareas-container'>
         <h1>Mis Tareas</h1>
@@ -32,7 +49,9 @@ export const Tareas = () => {
 
             <input type="submit" value="Guardar" />
         </form>
-        <hr />
+        
+        <h3>{memoContadores}</h3>
+        <button onClick={()=> sumarContador()}>Sumar</button>
 
         <h3>Lista de Tareas:</h3>
         <ul>
