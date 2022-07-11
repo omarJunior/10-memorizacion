@@ -1,12 +1,13 @@
 import './App.css';
-import { Gestion } from './Components/Gestion';
+//import { Gestion } from './Components/Gestion';
+import { Tareas } from './Components/Tareas';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Gestion />
-        
+        {/* <Gestion /> */}
+        <Tareas />
 
       </header>
     </div>

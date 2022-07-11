@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from 'react'
 
-export const Empleados = () => {
+export const Empleados = React.memo(({page = 1}) => {
 
     const [dataEmpleado, setDataEmpleado] = useState([])
     
     useEffect(()=>{
-        console.log("useEffect de empleados")
-        conseguirEmpleados()
-    }, [])
+        conseguirEmpleados(page)
+    }, [page])
 
-    const conseguirEmpleados = async()=>{
+    useEffect(()=>{
+        console.log("Se ha vuelto a renderizar los empleados")
+    }, [dataEmpleado])
+
+    const conseguirEmpleados = async(page)=>{
         try {
-            const url = "https://reqres.in/api/users?page=1"
+            const url = "https://reqres.in/api/users?page="+page
             const peticion = await fetch(url)
             const {data: empleados} = await peticion.json()
-            console.log(empleados)
+            console.log("Se ejecuto la peticion ajax")
             setDataEmpleado(empleados)
 
         } catch (error) {
@@ -24,6 +27,8 @@ export const Empleados = () => {
 
   return (
     <div>
+        <p className='p'>Mostrando la pagina: <strong>{page}</strong>
+        </p>
         {
             dataEmpleado.length >= 1 && (
                 dataEmpleado.map((item)=>(
@@ -38,3 +43,4 @@ export const Empleados = () => {
     </div>
   )
 }
+)
